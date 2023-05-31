@@ -1,0 +1,525 @@
+<nz-spin [nzSpinning]="isLoadingGeneral">
+  
+  <app-admin-pages></app-admin-pages>
+
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="createForm" class="login-form card" (ngSubmit)="submitForm()">
+    <div nz-row [nzGutter]="24">
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="email"> Selecciona una tienda </nz-form-label>
+            <nz-form-control>
+              <nz-select nzSize="large" (ngModelChange)="changeSelectStore($event)" nzShowSearch nzAllowClear
+                nzPlaceHolder="Buscar tiendas ..." formControlName="store" [(ngModel)]="storeSelected">
+
+                <nz-option *ngFor="let value of stores" nzValue="{{value.idTienda}}"
+                  nzLabel="{{value.idTienda}} - {{value.tienda}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="email">Selecciona un departamento</nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="storeSelected == null" nzSize="large"
+                (ngModelChange)="changeSelectDeparment($event)" nzShowSearch nzAllowClear
+                nzPlaceHolder="Buscar un departamento ..." formControlName="department" [(ngModel)]="deparmentSelected">
+                <nz-option *ngFor="let value of departments" nzValue="{{value.idDepartamento}}"
+                  nzLabel="{{value.idDepartamento}} {{value.departamento}} - {{value.clave}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="surnames">Selecciona un evento </nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="deparmentSelected == null" nzSize="large"
+                (ngModelChange)="changeSelectEvent($event)" nzShowSearch nzAllowClear
+                nzPlaceHolder="Buscar un evento ..." formControlName="event" [(ngModel)]="eventSelected">
+                <nz-option *ngFor="let value of events" [nzValue]="value"
+                  nzLabel="{{value.periodo}} -  {{value.historica == 1 ? 'Historica' : 'Operativa'}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+
+    </div>
+    <div nz-row [nzGutter]="24">
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="email"> Selecciona un mueble </nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="eventSelected == null" (ngModelChange)="changeSelectFurniture($event)"
+                nzSize="large" nzShowSearch nzAllowClear nzPlaceHolder="Buscar un mueble ...."
+                formControlName="furniture" [(ngModel)]="furnitureSelected">
+                <nz-option nzValue="0" nzLabel="Todos"></nz-option>
+                <nz-option *ngFor="let value of furnitures" nzValue="{{value.idRealograma}}"
+                  nzLabel="{{value.nombreRealograma}}"></nz-option>
+              </nz-select>
+
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="surnames">Selecciona una categoría </nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="eventSelected == null" nzSize="large"
+                (ngModelChange)="changeSelectCategory($event)" nzShowSearch nzAllowClear
+                nzPlaceHolder="Buscar una clase ..." formControlName="class" [(ngModel)]="classSelected">
+                <nz-option nzValue="N/A" nzLabel="Todos"></nz-option>
+                <nz-option *ngFor="let value of categories" nzValue="{{value.idCategoria}}"
+                  nzLabel="{{value.categoria}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <div class="inner-box">
+          <nz-form-item class="input-content">
+            <nz-form-label nzFor="email">Selecciona una orden de presentación</nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="eventSelected == null" nzSize="large"
+                (ngModelChange)="changeSelectPresentation($event)" nzShowSearch nzAllowClear
+                nzPlaceHolder="Buscar una presentación .." formControlName="presentation"
+                [(ngModel)]="presentationSelected">
+                <nz-option nzValue="1" nzLabel="Mueble (Layout)"></nz-option>
+                <nz-option nzValue="0" nzLabel="Fecha auditoria (Mayor a menor)"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </div>
+    <div nz-row [nzGutter]="8">
+      <div nz-col class="gutter-row" [nzSpan]="12">
+        <div class="inner-box">
+          <nz-space>
+            <button *nzSpaceItem type="button" (click)="clean()" nz-button class="button-white">
+              <i nz-icon nzType="clear"></i>
+              Limpiar
+            </button>
+          </nz-space>
+        </div>
+      </div>
+
+      <div nz-col class="gutter-row" align="right" [nzSpan]="12">
+        <div class="inner-box">
+
+          <button type="submit" nz-button class="button-blue" [disabled]="!createForm.valid">
+            <i nz-icon nzType="search"></i>
+            Realizar Busqueda
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card static">
+    <div class="elem-ap">
+      <div class="box nop"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> No existe productos
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box nex"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> No existe en tienda
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box fam"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Fuera de área mercadeable
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box black"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Nivel inexistente
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box red"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Nivel sin productos
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box pink"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Nivel con espacios
+      </span>
+    </div>
+    <div class="elem-ap">
+      <div class="box yellow"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Lista borrada </span>
+    </div>
+
+    <div class="elem-ap">
+      <div class="box cat"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Producto fuera de categoría </span>
+    </div>
+
+    <div class="elem-ap">
+      <div class="box granel"></div> <span> <i nz-icon nzType="up-circle" nzTheme="outline"></i> Producto a granel </span>
+    </div>
+
+
+  </div>
+
+
+  <div class="card table1" *ngIf="listadoLevelsAndTrams.length == 0 && !loadDetail">
+    <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+      [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+      <ng-template #contentTpl>
+        <span>
+          Selecciona todos los filtros
+          <br>
+          <a href="#API">No hemos encontrado ningún registro</a>
+        </span>
+      </ng-template>
+      <ng-template #footerTpl>
+      </ng-template>
+    </nz-empty>
+  </div>
+
+
+  <div class="card table1" *ngIf="loadDetail">
+    <nz-skeleton [nzActive]="true"></nz-skeleton>
+    <nz-skeleton [nzActive]="true"></nz-skeleton>
+    <nz-skeleton [nzActive]="true"></nz-skeleton>
+    <nz-skeleton [nzActive]="true"></nz-skeleton>
+    <nz-skeleton [nzActive]="true"></nz-skeleton>
+
+  </div>
+
+
+  <div class="card table1" *ngFor="let element of listadoLevelsAndTrams">
+
+    <div class="title-table">
+      <div class="ele">
+        <h3>Detalle del mueble</h3>
+      </div>
+      <div class="ele">
+        <button type="button" (click)="showModalPictures(element.header)" nz-button class="button-red">
+          <i nz-icon nzType="eye"></i>
+          Ver imagenes
+        </button>
+      </div>
+    </div>
+
+
+    <table class="table-s">
+      <thead>
+        <tr>
+          <th class="table-s" [nzAlign]="'center'">Departamento</th>
+          <th class="table-s" [nzAlign]="'center'">PLN ID</th>
+          <th class="table-s" [nzAlign]="'center'">Layout</th>
+          <th class="table-s" [nzAlign]="'center'">Mueble</th>
+          <th class="table-s" [nzAlign]="'center'">Fecha inicio</th>
+          <th class="table-s" [nzAlign]="'center'">Fecha fin</th>
+          <th class="table-s" [nzAlign]="'center'">Tiempo total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-s" >{{element.header.departamento}}</td>
+          <td class="table-s">{{element.header.plnId}}</td>
+          <td class="table-s">{{element.header.layout}}</td>
+          <td class="table-s">{{element.header.mueble}}</td>
+          <td class="table-s">{{element.header.fechainicio}}</td>
+          <td class="table-s">{{element.header.fechafin}}</td>
+          <td class="table-s">{{element.header.tiempo}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ele-apa">
+      <div class="ele-a">
+        <div class="header">
+          <div class="apa">
+            <h3>Categorías</h3>
+          </div>
+        </div>
+        <div class="description">
+          <div class="apa">
+            <p> {{element.header.gerencia}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ele-a">
+        <div class="header">
+          <div class="apa">
+            <h3>Clases</h3>
+          </div>
+        </div>
+        <div class="description">
+          <div class="apa">
+            <p>{{element.header.categorias}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="title">
+      <h3>Tramos y niveles</h3>
+    </div>
+
+    <div class="levelsandtrams">
+
+      <div>
+        <div class="trams-headers">
+          <div class="level-ele-n a-as"> Nivel 1 </div>
+          <div class="level-ele" *ngFor="let level of element.tramos"> Tramo {{level}}</div>
+        </div>
+
+        <!-- Campo de relleno -->
+        <div class="levels" *ngFor="let level of element.niveles">
+
+          <div class="level-ele-n">
+            Nivel {{level.nivel}}
+          </div>
+
+          <div class="trams-column">
+            <div class="trams">
+              <div *ngFor="let tram of level.tramos" class="level-ele-tr"
+                [ngStyle]="{'backgroundColor': getColor(tram.colorFondo), 'color': getColorText(tram.colorTexto), 'cursor': getCursor(tram), 'border': tram.esGranel ? '2px dotted #333' : '1px solid #333'} "
+                (click)="showModalDetail(tram)"> {{tram.tipo_accesorio}} ({{tram.productos}})  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="card card-sp">
+
+  </div>
+
+
+</nz-spin>
+
+
+<!-- Modal pictures -->
+
+<nz-modal nzWidth="1100px" [nzStyle]="{ top: '20px' }" [(nzVisible)]="visiblePictures" nzTitle="Evidencia de productos"
+  (nzOnCancel)="closeModalPictures()">
+
+
+  <ng-container *nzModalContent>
+    <div class="title-ap">
+
+      <div class="title-mo">
+        <h2>Visualizar imagenes</h2>
+        <p>Listado de evidencia fotográfica</p>
+      </div>
+
+      <nz-table #borderedTable nzBordered [nzShowPagination]="false" [nzNoResult]="p">
+        <thead>
+          <tr>
+            <th [nzAlign]="'center'">Tienda</th>
+            <th [nzAlign]="'center'">Evento</th>
+            <th [nzAlign]="'center'">Departamento</th>
+            <th [nzAlign]="'center'">Mueble</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td [nzAlign]="'center'">{{tramoSelectPicture.nombreTienda}}</td>
+            <td [nzAlign]="'center'">{{tramoSelectPicture.evento}}</td>
+            <td [nzAlign]="'center'">{{tramoSelectPicture.departamento}}</td>
+            <td [nzAlign]="'center'">{{tramoSelectPicture.mueble}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    </div>
+
+    <div class="imgs-content">
+
+      <nz-skeleton *ngIf="listPictures.length == 0 && isLoadingPictures" [nzActive]="true"></nz-skeleton>
+
+      <div *ngFor="let e of listPictures">
+        <div class="img-ap" [ngStyle]="{'borderBottom': e.retoma ? '5px dotted #FF0000' : '5px dotted #333'  }">
+          <div class="img-flex" (click)="onClick(e.picture)">
+            <img [src]="e.picture">
+          </div>
+          <div class="text">
+            <p class="descrip-s"><strong> Tramo: </strong> {{e.segment}} </p>
+            <p class="descrip-s"><strong> Fecha captura: </strong> </p>
+            <p> {{e.fechaCaptura}} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-container>
+  <div *nzModalFooter>
+    <nz-space>
+      <button *nzSpaceItem nz-button class="button-red" (click)="closeModalPictures()"><i nz-icon
+          nzType="close-circle"></i> Cerrar </button>
+    </nz-space>
+  </div>
+
+</nz-modal>
+
+<nz-modal nzWidth="1100px" [nzStyle]="{ top: '20px' }" [(nzVisible)]="visibleDetail" nzTitle="Detalle del tramo"
+  (nzOnCancel)="closeModalDetail()">
+  <ng-container *nzModalContent>
+    <div class="title">
+      <div class="title-mo">
+        <h2>Productos leidos</h2>
+        <p>Listado de productos leidos en el Tramo {{tramoSelectDetail.tramo}} / Nivel [{{tramoSelectDetail.nivel}}]</p>
+      </div>
+    </div>
+
+
+    <div class="content-tabs-flex">
+
+      <div class="tables-flex">
+        <nz-tabset [(nzSelectedIndex)]="selectedIndex" nzType="card">
+          <nz-tab [nzTitle]="titleTemplate1">
+            <ng-template #titleTemplate1>
+              <i nz-icon [nzType]="'apartment'"></i>
+              Lista actual
+            </ng-template>
+            <nz-table class="table-prod" [nzLoading]="isLoadingListActual" #basicTable [nzData]="listActual">
+              <thead>
+                <tr>
+                  <th>Secuencia</th>
+                  <th>UPC</th>
+                  <th>Descripción</th>
+                  <th>Fecha lectura</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>{{ data.secuencia }}</td>
+                  <td>{{ data.upc }}</td>
+                  <td>{{ data.descripcion }}</td>
+                  <td>{{ data.descripcion2 }}</td>
+                </tr>
+              </tbody>
+            </nz-table>
+
+
+          </nz-tab>
+          <nz-tab [nzTitle]="titleTemplate2" [nzDisabled]="listBorrada.length == 0">
+            <ng-template #titleTemplate2>
+              <i nz-icon [nzType]="'clear'"></i>
+              Lista borrada
+            </ng-template>
+
+            <div *ngIf="eventOriginal != 1" class="button-contend-del">
+              <button nz-button class="button-blue" (click)="restoreProductModal()"><i nz-icon nzType="retweet"></i>
+                Restaurar productos </button>
+            </div>
+
+            <nz-table class="table-prod" [nzLoading]="isLoadingListDelete" #basicTable [nzData]="listBorrada">
+              <thead>
+                <tr>
+                  <th>Secuencia</th>
+                  <th>UPC</th>
+                  <th>Descripción</th>
+                  <th>Fecha lectura</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>{{ data.secuencia }}</td>
+                  <td>{{ data.upc }}</td>
+                  <td>{{ data.descripcion }}</td>
+                  <td>{{ data.descripcion2 }}</td>
+
+                </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+
+      <div class="images-flex">
+
+        <div class="buttons-image"></div>
+
+
+        <nz-tabset nzType="card">
+          <nz-tab [nzTitle]="titleTemplateF">
+            <ng-template #titleTemplateF>
+              <i nz-icon [nzType]="'camera'"></i>
+              Fotograma
+            </ng-template>
+
+
+            <nz-skeleton *ngIf="isLoadingListActual" [nzActive]="true"></nz-skeleton>
+
+            <div *ngIf="!isLoadingListActual" class="spin">
+              <!-- <nz-spin [nzSize]="'large'" [nzSpinning]="isLoadingListActual"> -->
+              <div class="img-flex" (click)="onClick(tomaPicture)">
+                <img [src]="tomaPicture">
+              </div>
+              <!-- </nz-spin> -->
+            </div>
+
+
+
+
+          </nz-tab>
+          <nz-tab [nzTitle]="titleTemplateR" [nzDisabled]="retomaPicture.length == 0">
+            <ng-template #titleTemplateR>
+              <i nz-icon [nzType]="'audit'"></i>
+              Retoma
+            </ng-template>
+
+
+            <div class="img-flex" (click)="onClick(retomaPicture)">
+              <img [src]="retomaPicture">
+            </div>
+
+
+          </nz-tab>
+        </nz-tabset>
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </ng-container>
+  <div *nzModalFooter>
+    <nz-space>
+      <button *nzSpaceItem nz-button class="button-red" (click)="closeModalDetail()"><i nz-icon
+          nzType="close-circle"></i> Cerrar </button>
+    </nz-space>
+  </div>
+
+</nz-modal>
+
+
+<ng-template #p>
+  <div></div>
+</ng-template>

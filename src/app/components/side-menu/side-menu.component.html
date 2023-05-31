@@ -1,0 +1,247 @@
+
+
+
+
+  <nz-layout class="layout" nzTheme="light" >
+    <nz-header>
+      <div class="logo">
+        <!-- <button class="menu"  nz-button [nzSize]="'large'" nzType="dashed" (click)="open()">
+          <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+        </button> -->
+
+        <img src="assets/img/logo.svg" width="110px" />
+      </div>
+
+      <ul nz-menu nzMode="horizontal">
+        <li nz-menu-item nzSelected>
+          <span nz-icon nzType="control"></span>
+          Control de calidad
+        </li>
+        <li nz-menu-item nzDisabled>
+          <span nz-icon nzType="file-done"></span>
+          Inventario
+        </li>
+        <li nz-submenu nzTitle="Almacenes" nzIcon="apartment" nzDisabled>
+          <ul>
+            <li nz-menu-group nzTitle="Item 1">
+              <ul>
+                <li nz-menu-item>Option 1</li>
+                <li nz-menu-item>Option 2</li>
+              </ul>
+            </li>
+            <li nz-menu-group nzTitle="Item 2">
+              <ul>
+                <li nz-menu-item>Option 3</li>
+                <li nz-menu-item>Option 4</li>
+                <li nz-submenu nzTitle="Sub Menu">
+                  <ul>
+                    <li nz-menu-item nzDisabled>Option 5</li>
+                    <li nz-menu-item>Option 6</li>
+                  </ul>
+                </li>
+                <li nz-submenu nzDisabled nzTitle="Disabled Sub Menu">
+                  <ul>
+                    <li nz-menu-item>Option 5</li>
+                    <li nz-menu-item>Option 6</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Administración" nzIcon="setting" nzDisabled>
+          <ul>
+            <li nz-menu-group nzTitle="Item 1">
+              <ul>
+                <li nz-menu-item>Option 1</li>
+                <li nz-menu-item>Option 2</li>
+              </ul>
+            </li>
+            <li nz-menu-group nzTitle="Item 2">
+              <ul>
+                <li nz-menu-item>Option 3</li>
+                <li nz-menu-item>Option 4</li>
+                <li nz-submenu nzTitle="Sub Menu">
+                  <ul>
+                    <li nz-menu-item nzDisabled>Option 5</li>
+                    <li nz-menu-item>Option 6</li>
+                  </ul>
+                </li>
+                <li nz-submenu nzDisabled nzTitle="Disabled Sub Menu">
+                  <ul>
+                    <li nz-menu-item>Option 5</li>
+                    <li nz-menu-item>Option 6</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+    
+      <div class="content-element">
+        <router-outlet> </router-outlet>
+      </div>
+    </nz-content>
+   
+  </nz-layout>
+
+
+  <nz-drawer
+  nzWidth="220px" [nzStyle]="{ padding: '0px' }"
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  [nzPlacement]="'left'"
+  nzTitle="Menu"
+  (nzOnClose)="close()"
+>
+  <ng-container class="pa" *nzDrawerContent>
+ 
+    <div class="content-principal">
+    <div class="side-menu">
+     <div class="menu-principal">
+      <nz-sider
+      class="menu-sidebar"
+      nzCollapsible
+      nzWidth="256px"
+      nzBreakpoint="md"
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null"
+    >
+      <ul
+        nz-menu
+        nzTheme="light"
+        nzMode="inline"
+        [nzInlineCollapsed]="isCollapsed"
+      >
+        <li nz-menu-item zMatchRouter>
+          <i nz-icon nzType="audit"> </i>
+          <span> <a routerLink="/project/list"> Control de calidad </a> </span>
+        </li>
+
+        <li
+          nz-submenu
+          nzOpen
+          nzTitle="Proximamente"
+          nzIcon="shopping-cart"
+        >
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <div class="ori">
+                <a routerLink="/l/cl-stores"> Valida elementos </a>
+                <!-- <i
+                  class="yellow"
+                  nz-icon
+                  nzType="exclamation"
+                  nzTheme="outline"
+                ></i> -->
+              </div>
+            </li>
+
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/pl-master"> Proximamente </a>
+              <!-- <i
+                class="yellow"
+                nz-icon
+                nzType="exclamation"
+                nzTheme="outline"
+              ></i> -->
+            </li>
+
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/cat-products"> Proximamente </a>
+              <!-- <i
+                class="yellow"
+                nz-icon
+                nzType="exclamation"
+                nzTheme="outline"
+              ></i> -->
+            </li>
+
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/cat-furnitures"> Proximamente </a>
+              <!-- <i
+                class="yellow"
+                nz-icon
+                nzType="exclamation"
+                nzTheme="outline"
+              ></i> -->
+            </li>
+          </ul>
+        </li>
+
+        <li
+          nz-menu-item
+          zMatchRouter
+          id="rules-option"
+        >
+          <i nz-icon nzType="control"> </i>
+          <span> <a routerLink="/l/cat-rules"> Proximamente</a></span>
+        </li>
+
+        <li
+          nz-submenu
+          nzOpen
+          nzTitle="Proximamente"
+          nzIcon="branches"
+        >
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/pl-report"> Proximamente </a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/pl-analisis"> Proximamente </a>
+            </li>
+
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/pl-planogram"> Proximamente </a>
+            </li>
+          </ul>
+        </li>
+        <li
+          nz-submenu
+          nzOpen
+          nzTitle="Proximamente"
+          nzIcon="apartment"
+        >
+          <ul>
+            <li nz-menu-item nzMatchRouter >
+              <a routerLink="/l/admin-users">Proximamente</a>
+            </li>
+
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/l/admin-permissions">Proximamente</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- <li nz-menu-item zMatchRouter>
+          <i nz-icon nzType="user"> </i>
+          <span> <a routerLink="/l/my-profile"> Mi perfil </a></span>
+        </li> -->
+
+        <!-- <li nz-menu-item nzMatchRouter>
+          <i nz-icon nzType="solution"> </i>
+          <span> <a routerLink="/faq"> FAQ </a></span>
+        </li>
+
+        <li nz-menu-item nzTitle="Comprar" nzMatchRouter nzIcon="form">
+          <i nz-icon nzType="verified"> </i>
+          <span>
+            <a routerLink="/avise-privacy"> Aviso de privacidad </a></span
+          >
+        </li> -->
+      </ul>
+    </nz-sider>
+     </div>
+   </div>
+   <div class="content-element">
+   </div>
+ </div>
+
+ 
+
+  </ng-container>
+</nz-drawer>

@@ -1,0 +1,149 @@
+<div class="container-dash">
+    <div class="container-welcome">
+
+        <h2> <strong class="welcome"> Bienvenido </strong> <span> Gabriel Juarez 😃 </span> </h2>
+
+        <div class="contact">
+            <nz-tag nzColor="#55acee">
+                <i nz-icon nzType="twitter"></i>
+                <span>Twitter</span>
+            </nz-tag>
+            <nz-tag nzColor="#cd201f">
+                <i nz-icon nzType="youtube"></i>
+                <span>Youtube</span>
+            </nz-tag>
+            <nz-tag nzColor="#3b5999">
+                <i nz-icon nzType="facebook"></i>
+                <span>Facebook</span>
+            </nz-tag>
+            <nz-tag nzColor="#55acee">
+                <i nz-icon nzType="linkedin"></i>
+                <span>LinkedIn</span>
+            </nz-tag>
+        </div>
+
+
+    </div>
+
+    <br>
+
+    <div class="statists">
+
+        <div class="card-s">
+            <h2>
+                <!-- <i nz-icon nzType="alert" nzTheme="twotone"></i> -->
+                <i nz-icon nzType="pie-chart" nzTheme="twotone"></i>
+                400 Ticket´s registrados
+            </h2>
+            <p> Actualizado: 2021/03/20 </p>
+        </div>
+
+        <div class="card-s">
+            <h2>
+                <i nz-icon nzType="heart" nzTheme="twotone" [nzTwotoneColor]="'#a31600'"></i>
+                3,020 Incidencias
+            </h2>
+            <p> Actualizado: 2021/03/20 </p>
+        </div>
+
+        <div class="card-s">
+            <h2>
+                <i nz-icon nzType="alert" nzTheme="twotone"></i>
+                10,020 Reportes
+            </h2>
+            <p> Actualizado: 2021/03/20 </p>
+
+        </div>
+    </div>
+
+    <div class="charts">
+
+        <div class="chart-ele">
+            <div class="shadow">
+                <nz-timeline>
+                    <nz-timeline-item nzColor="green">Create a services site 2015-09-01</nz-timeline-item>
+                    <nz-timeline-item nzColor="green">Solve initial network problems 2015-09-01</nz-timeline-item>
+                    <nz-timeline-item nzColor="red">
+                        <p>Solve initial network problems 1</p>
+                        <p>Solve initial network problems 2</p>
+                        <p>Solve initial network problems 3 2015-09-01</p>
+                    </nz-timeline-item>
+                    <nz-timeline-item>
+                        <p>Technical testing 1</p>
+                        <p>Technical testing 2</p>
+                        <p>Technical testing 3 2015-09-01</p>
+                    </nz-timeline-item>
+                    <nz-timeline-item nzColor="gray">
+                        <p>Technical testing 1</p>
+                        <p>Technical testing 2</p>
+                        <p>Technical testing 3 2015-09-01</p>
+                    </nz-timeline-item>
+                    <nz-timeline-item nzColor="gray">
+                        <p>Technical testing 1</p>
+                        <p>Technical testing 2</p>
+                        <p>Technical testing 3 2015-09-01</p>
+                    </nz-timeline-item>
+                </nz-timeline>
+                <div class="title"> Historial de acciones </div>
+
+            </div>
+
+        </div>
+
+        <div class="chart-ele wraps ">
+
+            <div class="graphic shadow">
+                <div class="al-lineal">
+                    <nz-row [nzGutter]="16">
+                        <nz-col [nzSpan]="12">
+                            <nz-statistic [nzValue]="(1949101 | number)!" [nzTitle]="'Active Users'"></nz-statistic>
+                        </nz-col>
+                        <nz-col [nzSpan]="12">
+                            <nz-statistic [nzValue]="(2019.111 | number: '1.0-2')!"
+                                [nzTitle]="'Account Balance (CNY)'"></nz-statistic>
+                        </nz-col>
+                    </nz-row>
+                </div>
+            </div>
+
+
+            <div class="graphic shadow">
+                <div class="al">
+                    <nz-progress [nzPercent]="99.9" nzType="circle"
+                        [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }" nzStatus="active"
+                        [nzWidth]="80"></nz-progress>
+                    <nz-progress [nzPercent]="70" nzType="circle" [nzWidth]="80"></nz-progress>
+                    <nz-progress [nzPercent]="99.9" nzType="circle"
+                        [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }" nzStatus="active"
+                        [nzWidth]="80"></nz-progress>
+                </div>
+                <div class="title"> Avance de categorias </div>
+            </div>
+
+            <div class="graphic shadow">
+                <div class="al-lineal">
+                    <nz-progress [nzPercent]="30"></nz-progress>
+                    <nz-progress [nzPercent]="50" nzStatus="active"></nz-progress>
+                    <nz-progress [nzPercent]="70" nzStatus="exception"></nz-progress>
+                    <nz-progress [nzPercent]="100"></nz-progress>
+                    <nz-progress [nzPercent]="50" [nzShowInfo]="false"></nz-progress>
+
+                </div>
+                <div class="title"> Avance Áreas </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>

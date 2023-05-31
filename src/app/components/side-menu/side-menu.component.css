@@ -1,0 +1,47 @@
+
+
+.content-principal {
+    width: 99%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+nz-header {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.content-element {
+    width: 98vw;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+}
+
+.ori {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.yellow {
+    color: rgb(217, 217, 8);
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.menu {
+    font-size: 20px;
+    margin: 0px 30px 0px 0px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}

@@ -1,0 +1,51 @@
+
+.header-screen { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 0px;
+}
+
+.filters-screen {
+    margin: 25px 0px 0px 0px;
+}
+
+.table-screen {
+    margin: 25px 0px 0px 0px;
+}
+
+.row {
+    width: 100%;
+    margin: 5px auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.col {
+   width: 25%;
+}
+
+nz-date-picker, nz-select {
+    width: 100%;
+}
+
+.table-operations{
+    float: right;
+    margin: 15px 0px;
+}
+
+.elem {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.send-request {
+    margin-bottom: 16px;
+  }
+
+  .send-request span {
+    margin-left: 8px;
+  }

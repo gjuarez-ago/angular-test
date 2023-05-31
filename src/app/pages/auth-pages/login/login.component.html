@@ -1,0 +1,59 @@
+<nz-spin [nzSpinning]="isSpinning">
+  
+  <div class="login-page">
+     
+    <div class="form">
+      
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  
+  <p class="presentacion-title"><span class="welcome">Bienvenido</span>, Ingresa tus datos para iniciar sesión: </p>
+  
+    <nz-form-item class="input-content">
+      <nz-form-control nzHasFeedback nzErrorTip="Campo obligatorio">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nzSize="large" nz-input formControlName="username" placeholder="Ingresa tu correo electronico" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item class="input-content" > 
+      <nz-form-control nzHasFeedback nzErrorTip="Campo obligatorio">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Ingresa tu contraseña" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  
+    
+    <nz-form-item class="input-content" > 
+      <nz-form-control nzErrorTip="Campo requerido!">
+        <ngx-recaptcha2 formControlName="recaptcha" #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha">
+        </ngx-recaptcha2>    
+      </nz-form-control>
+    </nz-form-item>
+  
+    <!-- <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="24">
+        <label nz-checkbox formControlName="remember">
+          <span> Recordar mi usuario </span>
+        </label>
+      </div> -->
+      <!-- <div nz-col [nzSpan]="12">
+        <a class="login-form-forgot" routerLink="/auth/recovery-password">¿Olvidaste tu contraseña? </a>
+      </div> -->
+    <!-- </div> -->
+    <button class="login-form-button login-form-margin"> Iniciar sesión </button>
+    
+  <div>
+    <!-- <p class="text-in" routerLink="/register" >¿Eres nuevo?</p> -->
+    <div class="text-in" routerLink="/recovery-password" > <a > ¿Olvidaste tu contraseña? </a> </div>
+  </div>
+  
+  
+  </form>
+    </div>
+  
+  </div>
+  </nz-spin>

@@ -1,0 +1,65 @@
+<nz-spin [nzSpinning]="isLoadingGeneral">
+
+
+
+
+  <div class="content-principal">
+    <div class="header-screen">
+      <h2>Módulo Valida elementos </h2>
+      <div class="icon-content">
+        <nz-space>
+          <!-- <a *nzSpaceItem routerLink="/"> <img src="assets/img/icons/maletin.svg" width="25px"> </a> -->
+        </nz-space>
+      </div>
+    </div>
+
+    <div class="nav">
+
+    
+      <div class="breadcrumb">
+        <nz-breadcrumb nzSeparator=">">
+          <nz-breadcrumb-item>
+            <i nz-icon nzType="home"></i>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a>
+              <i nz-icon nzType="appstore" nzTheme="outline"></i>
+              <span>Control de calidad</span>
+            </a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a>
+              <i nz-icon nzType="cluster"></i>
+              <span>Valida elementos</span>
+            </a>
+          </nz-breadcrumb-item>
+  
+          <nz-breadcrumb-item>
+            <a>
+              <i nz-icon nzType="cluster"></i>
+              <span>Detalle</span>
+            </a>
+          </nz-breadcrumb-item>
+  
+  
+        </nz-breadcrumb>
+      </div>
+  
+      <div class="info-button">
+        <div class="avatar">
+          <nz-avatar (click)="info()" [nzSize]="37" nzText="{{getInitials()}}"></nz-avatar>
+        </div>
+      </div>
+    </div>
+  
+
+  </div>
+
+
+</nz-spin>
+
+
+
+<a id="whatsapp-float-icon" href="" target="_blank">
+  <p>Powered By <span id="ago">AGO Consultores </span> ® </p>
+</a>
