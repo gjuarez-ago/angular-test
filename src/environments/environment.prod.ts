@@ -1,5 +1,5 @@
 export const environment = {
   production: true, 
-  apiUrl: "http://187.162.208.218:8071/soriana",
+  apiUrl: "http://localhost:8081",
   siteKey: "6Le4ykYbAAAAAKH9QLPRmgCvuaZmuOFzYSyX9IW3",
 };
